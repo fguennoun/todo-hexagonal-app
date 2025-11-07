@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
 import org.springframework.test.web.client.MockRestServiceServer;
+import rebelsrescue.fleet.CargoCapacity;
 import rebelsrescue.fleet.StarShip;
 import rebelsrescue.fleet.spi.StarShipInventory;
 
@@ -41,10 +42,10 @@ public class SwapiClientTest {
         List<StarShip> starships = swapiClient.starShips();
 
         assertThat(starships).containsExactly(
-                new StarShip("CR90 corvette", 600, new BigDecimal("3000000")),
-                new StarShip("Slave 1", 6, new BigDecimal("70000")),
-                new StarShip("Death Star", 843342, new BigDecimal("1000000000000")));
-
+                new StarShip("CR90 corvette", 600, new CargoCapacity(new BigDecimal("3000000"))),
+                new StarShip("Slave 1", 6, new CargoCapacity(new BigDecimal("70000"))),
+                new StarShip("Death Star", 843342, new CargoCapacity(new BigDecimal("1000000000000")))
+        );
     }
 
     private void configureMockServer() {

@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import rebelsrescue.fleet.CargoCapacity;
 import rebelsrescue.fleet.StarShip;
 import rebelsrescue.fleet.spi.StarShipInventory;
 import rebelsrescue.swapi.model.SwapiResponse;
 import rebelsrescue.swapi.model.SwapiStarShip;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
@@ -56,7 +56,7 @@ public class SwapiClient implements StarShipInventory {
                 new StarShip(
                         swapiStarShip.name(),
                         parseInt(swapiStarShip.passengers().replaceAll(",", "")),
-                        new BigDecimal(swapiStarShip.cargoCapacity()));
+                        CargoCapacity.of(swapiStarShip.cargoCapacity()));
     }
 
     private Predicate<SwapiStarShip> hasValidPassengersValue() {

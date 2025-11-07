@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import rebelsrescue.configuration.DomainConfiguration;
+import rebelsrescue.fleet.CargoCapacity;
 import rebelsrescue.fleet.Fleet;
 import rebelsrescue.fleet.StarShip;
 import rebelsrescue.fleet.spi.Fleets;
@@ -49,7 +50,7 @@ final class RescueFleetControllerTest {
     @Test
     void should_return_a_fleet_given_an_id() throws Exception {
         Fleet fleet = new Fleet(singletonList(
-                new StarShip("Millennium Falcon", 6, new BigDecimal("100000"))
+                new StarShip("Millennium Falcon", 6, new CargoCapacity(new BigDecimal("100000")))
         ));
         fleets.save(fleet);
 
